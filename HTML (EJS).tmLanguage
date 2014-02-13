@@ -9,15 +9,21 @@
 	</array>
 	<key>foldingStartMarker</key>
 	<string>(?x)
-		(&lt;(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)\b.*?&gt;
-		|&lt;!--(?!.*--&gt;)
+		(&lt;(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|li|form|dl)\b.*?&gt;
+		|&lt;!--(?!.*--\s*&gt;)
+		|^&lt;!--\ \#tminclude\ (?&gt;.*?--&gt;)$
+		|&lt;\?(?:php)?.*\b(if|for(each)?|while)\b.+:
+		|\{\{?(if|foreach|capture|literal|foreach|php|section|strip)
 		|\{\s*($|\?&gt;\s*$|//|/\*(.*\*/\s*$|(?!.*?\*/)))
 		)</string>
 	<key>foldingStopMarker</key>
 	<string>(?x)
-		(&lt;/(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|form|dl)&gt;
-		|^\s*--&gt;
-		|(^|\s)\}
+		(&lt;/(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|li|form|dl)&gt;
+		|^(?!.*?&lt;!--).*?--\s*&gt;
+		|^&lt;!--\ end\ tminclude\ --&gt;$
+		|&lt;\?(?:php)?.*\bend(if|for(each)?|while)\b
+		|\{\{?/(if|foreach|capture|literal|foreach|php|section|strip)
+		|^[^{]*\}
 		)</string>
 	<key>keyEquivalent</key>
 	<string>^~R</string>
@@ -33,13 +39,13 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.comment.erb</string>
+					<string>punctuation.definition.comment.ejs</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>%&gt;</string>
 			<key>name</key>
-			<string>comment.block.erb</string>
+			<string>comment.block.ejs</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -49,13 +55,13 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.embedded.ruby</string>
+					<string>punctuation.section.embedded.js</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>-?%&gt;</string>
 			<key>name</key>
-			<string>source.ruby.rails.embedded.html</string>
+			<string>source.js.embedded.html</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -64,13 +70,13 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.comment.ruby</string>
+							<string>punctuation.definition.comment.js</string>
 						</dict>
 					</dict>
 					<key>match</key>
 					<string>(#).*?(?=-?%&gt;)</string>
 					<key>name</key>
-					<string>comment.line.number-sign.ruby</string>
+					<string>comment.line.number-sign.js</string>
 				</dict>
 				<dict>
 					<key>include</key>
