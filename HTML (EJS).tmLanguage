@@ -6,6 +6,7 @@
 	<array>
 		<string>jst.str</string>
 		<string>jst</string>
+		<string>ejs</string>
 	</array>
 	<key>foldingStartMarker</key>
 	<string>(?x)
